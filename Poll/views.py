@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Question
+from.models import Question
 
 def index(random):
     questionLatestList = Question.objects.order_by('-publishedDate')[:5]
+    for q in questionLatestList:
+        output = ','.join(q.questionText)
+    return HttpResponse(output)
 
 def pollmain(request):
     return HttpResponse("Hello This is the Polling Page")
