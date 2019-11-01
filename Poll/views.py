@@ -4,9 +4,10 @@ from.models import Question
 
 def index(random):
     questionLatestList = Question.objects.order_by('-publishedDate')[:5]
-    for q in questionLatestList:
-        output = ','.join(q.questionText)
-    return HttpResponse(output)
+    context={
+        'questionLatestList':questionLatestList,
+    }
+    return render(random,'Poll/index.html',context)
 
 def pollmain(request):
     return HttpResponse("Hello This is the Polling Page")
