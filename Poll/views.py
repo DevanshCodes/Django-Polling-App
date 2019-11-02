@@ -13,7 +13,8 @@ def pollmain(request):
     return HttpResponse("Hello This is the Polling Page")
 
 def detail(random,question_id):
-    return HttpResponse("Your are looking at Question %s."% question_id)
+    question = Question.objects.get(pk=question_id)
+    return render(random,'Poll/details.html',{'question':question})
 
 def results(random,question_id):
     return HttpResponse("Your are looking at the results of Question %s."% question_id)    
